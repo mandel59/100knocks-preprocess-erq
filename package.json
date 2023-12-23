@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "100knocks-preprocess-erq",
+  "version": "1.0.0",
+  "description": "このリポジトリのコードは[データサイエンス100本ノック（構造化データ加工編）](https://github.com/The-Japan-DataScientist-Society/100knocks-preprocess)の解答例です。",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dsdojo.db",
+    "init": "erq dsdojo.db <erq/init.erq",
+    "start": "erq dsdojo.db <erq/100knocks-preprocess.erq"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT-0",
+  "devDependencies": {
+    "@mandel59/erq": "github:mandel59/erq",
+    "rimraf": "^5.0.5"
+  }
+}
