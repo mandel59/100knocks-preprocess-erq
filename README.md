@@ -4,6 +4,9 @@
 
 各問題はErq用に改変しています。
 
+- [データサイエンス100本ノック（構造化データ加工編） Erqでの解答例](erq/100knocks-preprocess.erq)
+- [Erq - Easy Relational Query Language](https://github.com/mandel59/erq)
+
 ## 使い方
 
 Node.js v20.10.0 で動作を確認しています。
