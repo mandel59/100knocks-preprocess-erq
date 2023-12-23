@@ -23,7 +23,7 @@ npx erq dsdojo.db <erq/init.erq
 npx erq dsdojo.db
 ```
 
-解答例は、次の用に全体を実行することが可能です。
+解答例は、次のようにして全体を実行することが可能です。
 
 ```shell
 npx erq dsdojo.db <erq/100knocks-preprocess.erq
