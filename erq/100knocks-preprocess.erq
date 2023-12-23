@@ -1012,7 +1012,7 @@ E-093: 商品データ（product）では各カテゴリのコード値だけを
 */
 
 drop table if exists product_category;;
-create table product_category as product join category using (category_small_cd);;
+create table product_category as product join category using (category_major_cd, category_medium_cd, category_small_cd);;
 
 /*
 E-094: 093で作成したカテゴリ名付き商品データを以下の仕様でファイル出力せよ。
@@ -1023,3 +1023,102 @@ E-094: 093で作成したカテゴリ名付き商品データを以下の仕様�
 */
 
 product_category output csv with header to 'output/product_category.csv';;
+
+/*
+E-095: 093で作成したカテゴリ名付き商品データを以下の仕様でファイル出力せよ。
+
+|ファイル形式|ヘッダ有無|文字エンコーディング|
+|:--:|:--:|:--:|
+|CSV（カンマ区切り）|有り|CP932|
+*/
+
+product_category output csv with header, encoding 'cp932' to 'output/product_category_cp932.csv';;
+
+/*
+E-096: 093で作成したカテゴリ名付き商品データを以下の仕様でファイル出力せよ。
+
+|ファイル形式|ヘッダ有無|文字エンコーディング|
+|:--:|:--:|:--:|
+|CSV（カンマ区切り）|無し|UTF-8|
+*/
+
+product_category output csv to 'output/product_category_no_header.csv';;
+
+/*
+E-097: 094で作成した以下形式のファイルを読み込み、データを3件を表示させて正しく取り込まれていることを確認せよ。
+
+|ファイル形式|ヘッダ有無|文字エンコーディング|
+|:--:|:--:|:--:|
+|CSV（カンマ区切り）|有り|UTF-8|
+*/
+
+drop table if exists product_category_from_csv;;
+load table product_category_from_csv(
+  product_cd text,
+  category_major_cd text,
+  category_medium_cd text,
+  category_small_cd text,
+  unit_price integer,
+  unit_cost integer,
+  category_major_name text,
+  category_medium_name text,
+  category_small_name text
+) from 'output/product_category.csv' format csv, header;;
+
+product_category_from_csv limit 3;;
+
+/*
+E-098: 096で作成した以下形式のファイルを読み込み、データを3件を表示させて正しく取り込まれていることを確認せよ。
+
+|ファイル形式|ヘッダ有無|文字エンコーディング|
+|:--:|:--:|:--:|
+|CSV（カンマ区切り）|ヘッダ無し|UTF-8|
+*/
+
+drop table if exists product_category_from_csv_no_header;;
+load table product_category_from_csv_no_header(
+  product_cd text,
+  category_major_cd text,
+  category_medium_cd text,
+  category_small_cd text,
+  unit_price integer,
+  unit_cost integer,
+  category_major_name text,
+  category_medium_name text,
+  category_small_name text
+) from 'output/product_category_no_header.csv' format csv;;
+
+product_category_from_csv_no_header limit 3;;
+
+/*
+E-099: 093で作成したカテゴリ名付き商品データを以下の仕様でファイル出力せよ。
+
+|ファイル形式|ヘッダ有無|文字エンコーディング|
+|:--:|:--:|:--:|
+|TSV（タブ区切り）|有り|UTF-8|
+*/
+
+product_category output csv with header, delimiter E'\t', no quote to 'output/product_category.tsv';;
+
+/*
+E-100: 099で作成した以下形式のファイルを読み込み、データを3件を表示させて正しく取り込まれていることを確認せよ。
+
+|ファイル形式|ヘッダ有無|文字エンコーディング|
+|:--:|:--:|:--:|
+|TSV（タブ区切り）|有り|UTF-8|
+*/
+
+drop table if exists product_category_from_tsv;;
+load table product_category_from_tsv(
+  product_cd text,
+  category_major_cd text,
+  category_medium_cd text,
+  category_small_cd text,
+  unit_price integer,
+  unit_cost integer,
+  category_major_name text,
+  category_medium_name text,
+  category_small_name text
+) from 'output/product_category.tsv' format csv, header, delimiter E'\t', no quote;;
+
+product_category_from_tsv limit 3;;
