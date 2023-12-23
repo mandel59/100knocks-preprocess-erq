@@ -6,7 +6,9 @@
 
 ## 使い方
 
-このリポジトリをクローンした後、次のコマンドでSQLiteデータベースを初期化してください。
+Node.js v20.10.0 で動作を確認しています。
+
+Node.jsがインストールされている環境で、このリポジトリをクローンした後、次のコマンドでSQLiteデータベースを初期化してください。
 
 ```shell
 npm install
@@ -24,7 +26,7 @@ npx erq dsdojo.db
 解答例は、次の用に全体を実行することが可能です。
 
 ```shell
-erq dsdojo.db <erq/100knocks-preprocess.erq
+npx erq dsdojo.db <erq/100knocks-preprocess.erq
 ```
 
 ## LICENSE
